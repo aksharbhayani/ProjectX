@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:project_app/screens/alert.dart';
 import 'package:project_app/screens/home_screen/Screen%201/image_analysis.dart';
-import 'package:project_app/screens/home_screen/Screen%202/uitest.dart';
 import 'package:project_app/screens/home_screen/Screen%203/thoughts.dart';
 import 'package:project_app/size_config.dart';
 import 'Screen 2/twitter_analysis.dart';
@@ -44,10 +43,10 @@ class _GridDashboardState extends State<GridDashboard> {
       new Items(no: "6", title: "Settings", img: "assets/images/setting.png");
 
   Items item7 =
-      new Items(no: "7", title: "Profile", img: "assets/images/setting.png");
+      new Items(no: "7", title: "Profile", img: "assets/icons/profile.png");
 
   Items item8 =
-      new Items(no: "8", title: "Logout", img: "assets/images/setting.png");
+      new Items(no: "8", title: "Logout", img: "assets/icons/logout.png");
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +86,10 @@ class _GridDashboardState extends State<GridDashboard> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ImageAnalysis()));
                 } else if (data.no == '2') {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Uitest()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TwitterAnalysis()));
                 } else if (data.no == '3') {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Thoughts()));

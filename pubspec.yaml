@@ -84,6 +84,8 @@ flutter:
     - assets/icons/google-icon.png
     - assets/icons/facebook-2.png
     - assets/icons/twitter.png
+    - assets/icons/logout.png
+    - assets/icons/profile.png
     - assets/model/facial/model_unquant.tflite
     - assets/model/facial/labels.txt
     # An image asset can refer to one or more resolution-specific "variants", see

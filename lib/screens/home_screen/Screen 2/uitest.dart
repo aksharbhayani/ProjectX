@@ -178,7 +178,7 @@ class _UitestState extends State<Uitest> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  _image == null
+                                  _image != null
                                       ? Container()
                                       : Image.file(_image),
                                   SizedBox(
@@ -186,7 +186,7 @@ class _UitestState extends State<Uitest> {
                                   ),
                                   _image == null
                                       ? Container()
-                                      : _outputs == null
+                                      : _outputs != null
                                           ? Text(
                                               "Result: ${_outputs[0]["label"]}",
                                               style: TextStyle(

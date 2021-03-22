@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
-
-import '../../../constants.dart';
+import '../Screen 2/animation.dart';
 import '../../../size_config.dart';
 
 class Tensorflow extends StatefulWidget {
@@ -91,78 +90,104 @@ class _TensorflowState extends State<Tensorflow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Image Analysis",
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-        backgroundColor: kPrimColor,
+        backgroundColor: Colors.grey[100],
         elevation: 0,
+        brightness: Brightness.light,
+        leading: Icon(null),
       ),
-      body: Container(
-        color: Color(0xff392850),
+      body: SafeArea(
+        //color: Color(0xff392850),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _loading
-                ? Container(
-                    height: 300,
-                    width: 300,
-                  )
-                : Container(
-                    margin: EdgeInsets.all(20),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  FadeAnimation(
+                      1,
+                      Text(
+                        'Facial Analysis',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 50,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
                       children: <Widget>[
-                        _image == null ? Container() : Image.file(_image),
-                        SizedBox(
-                          height: 20,
+                        FloatingActionButton(
+                          heroTag: "btn1",
+                          tooltip: 'Pick Image',
+                          onPressed: pickImage,
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                          backgroundColor: Colors.yellow[700],
                         ),
-                        _image == null
-                            ? Container()
-                            : _outputs != null
-                                ? Text(
-                                    _outputs[0]["label"],
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: getScreenWidth(22),
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "Open Sans"),
-                                  )
-                                : Container(child: Text("hey"))
+                        SizedBox(
+                          width: 40,
+                        ),
+                        FloatingActionButton(
+                          heroTag: "btn2",
+                          tooltip: 'Open Camera',
+                          onPressed: pickImageCamera,
+                          child: Icon(
+                            Icons.camera,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                          backgroundColor: Colors.yellow[700],
+                        ),
                       ],
                     ),
                   ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                FloatingActionButton(
-                  tooltip: 'Pick Image',
-                  onPressed: pickImage,
-                  child: Icon(
-                    Icons.add_a_photo,
-                    size: 20,
-                    color: Colors.black,
+                  SizedBox(
+                    height: 10,
                   ),
-                  backgroundColor: Colors.white,
-                ),
-                FloatingActionButton(
-                  tooltip: 'Open Camera',
-                  onPressed: pickImageCamera,
-                  child: Icon(
-                    Icons.camera,
-                    size: 20,
-                    color: Colors.black,
-                  ),
-                  backgroundColor: Colors.white,
-                ),
-              ],
+                  _loading
+                      ? Container(
+                          height: 300,
+                          width: 300,
+                        )
+                      : Container(
+                          margin: EdgeInsets.all(20),
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              _image == null ? Container() : Image.file(_image),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              _image == null
+                                  ? Container()
+                                  : _outputs != null
+                                      ? Text(
+                                          "Result : ${_outputs[0]["label"]}",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: getScreenWidth(22),
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: "Open Sans"),
+                                        )
+                                      : Container(child: Text("hey"))
+                            ],
+                          ),
+                        ),
+                ],
+              ),
             ),
           ],
         ),
