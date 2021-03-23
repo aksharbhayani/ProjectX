@@ -41,6 +41,7 @@ dependencies:
   cool_alert: ^1.0.3
   shared_preferences: ^0.5.12+4
   image_cropper: ^1.4.0
+  flutter_custom_clippers: ^1.1.2
   firebase_storage: 
   image_picker: 
   tflite: 

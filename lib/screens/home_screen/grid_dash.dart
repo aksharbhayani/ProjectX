@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:project_app/screens/alert.dart';
 import 'package:project_app/screens/home_screen/Screen%201/image_analysis.dart';
-import 'package:project_app/screens/home_screen/Screen%203/thoughts.dart';
+import 'package:project_app/screens/home_screen/Screen%203/notehome.dart';
 import 'package:project_app/size_config.dart';
 import 'Screen 2/twitter_analysis.dart';
 import 'Screen 4/reports.dart';
@@ -92,7 +92,7 @@ class _GridDashboardState extends State<GridDashboard> {
                           builder: (context) => TwitterAnalysis()));
                 } else if (data.no == '3') {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Thoughts()));
+                      MaterialPageRoute(builder: (context) => Notehome()));
                 } else if (data.no == '4') {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Reports()));

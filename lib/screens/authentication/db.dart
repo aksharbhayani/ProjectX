@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DbService {
   final String uid;
   DbService({this.uid});
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final firestoreInstance = FirebaseFirestore.instance;
+  final firebaseUser = FirebaseAuth.instance.currentUser;
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
@@ -12,6 +15,14 @@ class DbService {
       'name': name,
       'phnumber': phnumber,
     });
+  }
+
+  Future<void> saveEmailPassword(String email, String password) async {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .update({'email': email, 'password': password});
+    return;
   }
 
   Stream<QuerySnapshot> get users {
