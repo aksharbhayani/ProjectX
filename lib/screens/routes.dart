@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_app/screens/home_screen/Screen%201/image_analysis.dart';
-import 'package:project_app/screens/home_screen/Screen%203/addnote.dart';
 import 'package:project_app/screens/home_screen/home.dart';
 import 'package:project_app/screens/sign_in/forgot_password/forgot_password.dart';
 import 'package:project_app/screens/sign_in/sign_in.dart';
@@ -18,5 +17,4 @@ final Map<String, WidgetBuilder> routes = {
   HomeScreen.routeName: (context) => HomeScreen(),
   SignInScreen.routeName: (context) => SignInScreen(),
   ImageAnalysis.routeName: (context) => ImageAnalysis(),
-  Addnote.routeName: (context) => Addnote(),
 };
