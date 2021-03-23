@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:project_app/screens/home_screen/Screen%203/addnote.dart';
+import 'package:project_app/screens/home_screen/Screen%203/notes.dart';
 
 class Thoughts extends StatefulWidget {
   @override
@@ -12,11 +11,16 @@ class _ThoughtsState extends State<Thoughts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Thoughts',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: kPrimColor, fontSize: getScreenWidth(40))),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Notes"),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Addnote()));
+          },
+        ),
+        body: notes());
   }
 }

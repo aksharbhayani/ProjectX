@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:project_app/models/user.dart';
 import 'package:project_app/screens/alert.dart';
 import 'package:project_app/screens/authentication/db.dart';
+import 'package:project_app/screens/home_screen/Screen%203/addnote.dart';
 import 'package:project_app/screens/sign_in/components/sign_form.dart';
 import 'package:project_app/screens/sign_up/components/signup_form.dart';
+import '';
 
 class Errors {
   static String show(String errorCode) {
@@ -65,7 +67,20 @@ class AuthService {
       print(name);
       print(phone);
       await DbService(uid: user.uid).updateUserData(name, phone);
+      await DbService(uid: user.uid).saveEmailPassword(email, password);
       return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future notesData() async {
+    try {
+      final User user = _auth.currentUser;
+      final uid = user.uid;
+      await DbService(uid: uid)
+          .saveNotes(tittleControl.text, contentControl.text);
     } catch (e) {
       print(e.toString());
       return null;
