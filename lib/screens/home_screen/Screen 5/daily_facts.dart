@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_app/screens/home_screen/Screen%205/body.dart';
 
-import '../../../constants.dart';
-import '../../../size_config.dart';
 
 class DailyFacts extends StatefulWidget {
   @override
@@ -11,12 +10,6 @@ class DailyFacts extends StatefulWidget {
 class _DailyFactsState extends State<DailyFacts> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Daily Facts\nUnder maintenance',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: kPrimColor, fontSize: getScreenWidth(40))),
-      ),
-    );
+    return Scaffold(body: CarouselDemo());
   }
 }

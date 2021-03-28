@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_app/size_config.dart';
 
 class ViewNote extends StatefulWidget {
   final Map data;
@@ -19,89 +17,91 @@ class _ViewNoteState extends State<ViewNote> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(12),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 3,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+              ),
+            ),
+            IconButton(
+              onPressed: delete,
+              icon: Icon(
+                Icons.delete,
+                color: Colors.black,
+              ),
+            )
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(12),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 12,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Text(
+                        "${widget.data['title']}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 32,
+                            fontFamily: "Open Sans",
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                    IconButton(
-                      onPressed: delete,
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.black,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4),
+                      child: Container(
+                        height: 1,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+                      child: Text(
+                        widget.time,
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14,
+                          fontFamily: "Open Sans",
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.75,
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "${widget.data['description']}",
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 20,
+                          fontFamily: "Open Sans",
+                        ),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text(
-                          "${widget.data['title']}",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 32,
-                              fontFamily: "Open Sans",
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4),
-                        child: Container(
-                          height: 1,
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
-                        child: Text(
-                          widget.time,
-                          style: TextStyle(
-                            color: Colors.black54,
-                            fontSize: 14,
-                            fontFamily: "Open Sans",
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.75,
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "${widget.data['description']}",
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 20,
-                            fontFamily: "Open Sans",
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

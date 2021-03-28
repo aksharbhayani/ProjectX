@@ -42,10 +42,16 @@ dependencies:
   shared_preferences: ^0.5.12+4
   image_cropper: ^1.4.0
   flutter_custom_clippers: ^1.1.2
+  firebase_ml_vision: ^0.11.0
+  flutter_overlay_loader: ^0.1.1
+  flutter_svg: ^0.19.1 #it helps us to use SVG
+  google_fonts: ^0.5.0+1
+  twitter_api: ^0.1.2
+  carousel_slider: ^3.0.0
+  tflite_flutter:
   firebase_storage: 
   image_picker: 
   tflite: 
-  get:
 
 dev_dependencies:
   flutter_test:
@@ -89,6 +95,9 @@ flutter:
     - assets/icons/profile.png
     - assets/model/facial/model_unquant.tflite
     - assets/model/facial/labels.txt
+    - assets/icons/phq9.png
+    - assets/
+    - assets/icons/
     # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

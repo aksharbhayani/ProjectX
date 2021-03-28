@@ -6,7 +6,6 @@ import 'package:project_app/screens/alert.dart';
 import 'package:project_app/screens/authentication/db.dart';
 import 'package:project_app/screens/sign_in/components/sign_form.dart';
 import 'package:project_app/screens/sign_up/components/signup_form.dart';
-import '';
 
 class Errors {
   static String show(String errorCode) {
@@ -38,7 +37,12 @@ class AuthService {
   CustomUser _userFromFirebaseUser(User user) {
     firestoreInstance.collection("users").doc(user.uid).get().then((value) {
       namee = value.data()['name'];
+      username = value.data()['username'];
+      eemail = value.data()['email'];
+      phoneno = value.data()['phnumber'];
+
       print(namee);
+      print(username);
     });
     return user != null ? CustomUser(uid: user.uid) : null;
   }
@@ -65,7 +69,7 @@ class AuthService {
       User user = result.user;
       print(name);
       print(phone);
-      await DbService(uid: user.uid).updateUserData(name, phone);
+      await DbService(uid: user.uid).updateUserData(name, phone, username);
       await DbService(uid: user.uid).saveEmailPassword(email, password);
       return _userFromFirebaseUser(user);
     } catch (e) {
