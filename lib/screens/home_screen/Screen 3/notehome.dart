@@ -69,22 +69,36 @@ class _NotehomeState extends State<Notehome> {
                 decoration: BoxDecoration(color: kPrimColor),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Text(
-                    "THOUGHTS",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 36,
-                        fontFamily: "Muli",
-                        fontWeight: FontWeight.bold),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Text(
+                      "THOUGHTS 💭",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 36,
+                          fontFamily: "Muli",
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: Text(
+                      "Pen down your thoughts here\n It's safe with us ✌️ ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: "Muli",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ]),
           Expanded(
@@ -161,6 +175,7 @@ class _NotehomeState extends State<Notehome> {
                                                   SizedBox(height: 10),
                                                   Text(
                                                     "${data["description"]}",
+                                                    maxLines: 1,
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 18,
@@ -173,8 +188,8 @@ class _NotehomeState extends State<Notehome> {
                                                     child: Text(
                                                       formattedTime,
                                                       style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 16,
+                                                        color: Colors.white60,
+                                                        fontSize: 14,
                                                         fontFamily: "Open Sans",
                                                       ),
                                                     ),

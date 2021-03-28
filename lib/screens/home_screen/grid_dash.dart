@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import 'package:project_app/screens/alert.dart';
 import 'package:project_app/screens/home_screen/Screen%201/image_analysis.dart';
 import 'package:project_app/screens/home_screen/Screen%203/notehome.dart';
+import 'package:project_app/screens/home_screen/Screen%206/startphq.dart';
+import 'package:project_app/screens/home_screen/Screen%204/reports.dart';
 import 'package:project_app/size_config.dart';
 import 'Screen 2/twitter_analysis.dart';
-import 'Screen 4/reports.dart';
 import 'Screen 5/daily_facts.dart';
-import 'Screen 6/settings.dart';
 import 'Screen 7/profile.dart';
 
 // ignore: must_be_immutable
@@ -34,13 +34,13 @@ class _GridDashboardState extends State<GridDashboard> {
       no: "3", title: "Thoughts", img: "assets/images/thoughts-3.png");
 
   Items item4 =
-      new Items(no: "4", title: "Reports", img: "assets/images/Reports-4.png");
+      new Items(no: "4", title: "PHQ - 9", img: "assets/icons/phq9.png");
 
   Items item5 = new Items(
       no: "5", title: "Daily\nFacts", img: "assets/images/facts-5.png");
 
   Items item6 =
-      new Items(no: "6", title: "Settings", img: "assets/images/setting.png");
+      new Items(no: "6", title: "Reports", img: "assets/images/Reports-4.png");
 
   Items item7 =
       new Items(no: "7", title: "Profile", img: "assets/icons/profile.png");
@@ -95,13 +95,13 @@ class _GridDashboardState extends State<GridDashboard> {
                       MaterialPageRoute(builder: (context) => Notehome()));
                 } else if (data.no == '4') {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Reports()));
+                      MaterialPageRoute(builder: (context) => startphq()));
                 } else if (data.no == '5') {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DailyFacts()));
                 } else if (data.no == '6') {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Settings()));
+                      MaterialPageRoute(builder: (context) => Reports()));
                 } else if (data.no == '7') {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Profile()));

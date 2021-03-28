@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_app/size_config.dart';
+
 
 class AddNotes extends StatefulWidget {
   @override
@@ -18,32 +18,35 @@ class _AddNotesState extends State<AddNotes> {
       child: Scaffold(
         backgroundColor: Colors.white,
         //backgroundColor: Color(0xff070706),
+        appBar: AppBar(
+          elevation: 3,
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                ),
+              ),
+              IconButton(
+                onPressed: add,
+                icon: Icon(
+                  Icons.check_circle_outlined,
+                  size: 30,
+                ),
+              )
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(12),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        size: 25,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: add,
-                      icon: Icon(
-                        Icons.check_circle_outlined,
-                        size: 30,
-                      ),
-                    )
-                  ],
-                ),
                 SizedBox(
                   height: 12,
                 ),

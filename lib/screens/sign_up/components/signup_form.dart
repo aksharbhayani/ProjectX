@@ -10,6 +10,9 @@ import '../../loading.dart';
 
 String name;
 String phone;
+String username;
+String eemail;
+String phoneno;
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -20,6 +23,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final ScrollController _controller1 = ScrollController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String email;
@@ -66,6 +70,8 @@ class _SignUpFormState extends State<SignUpForm> {
                           SizedBox(height: getScreenHeight(30)),
                           buildPhoneFormField(),
                           SizedBox(height: getScreenHeight(30)),
+                          buildUserNameFormField(),
+                          SizedBox(height: getScreenHeight(30)),
                           buildEmailFormField(),
                           SizedBox(height: getScreenHeight(30)),
                           buildPasswordFormField(),
@@ -103,22 +109,6 @@ class _SignUpFormState extends State<SignUpForm> {
                             Navigator.pushNamed(
                                 context, SignInScreen.routeName);
                           }
-
-                          /*FirebaseAuth.instance
-                        .createUserWithEmailAndPassword(
-                            email: email, password: password)
-                        .then((signedInUser) {
-                      _firestore.collection('users').add(
-                          {'email': email, 'password': password}).then((value) {
-                        if (signedInUser != null) {
-                          Navigator.pushNamed(context, SignInScreen.routeName);
-                        }
-                      }).catchError((e) {
-                        print(e);
-                      });
-                    }).catchError((e) {
-                      print(e);
-                    });*/
                         }
                       },
                     ),
@@ -249,6 +239,36 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: InputDecoration(
         labelText: "First Name",
         hintText: "Enter your Name",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Image.asset("assets/icons/Mail.png"),
+      ),
+    );
+  }
+
+  TextFormField buildUserNameFormField() {
+    return TextFormField(
+      controller: usernameController,
+      keyboardType: TextInputType.name,
+      onSaved: (newValue) => username = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kNamelNullError);
+          return "";
+        } else {
+          return null;
+        }
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kNamelNullError);
+          return "";
+        } else {
+          return null;
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Twitter Username",
+        hintText: "Enter your Twitter Username",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Image.asset("assets/icons/Mail.png"),
       ),
