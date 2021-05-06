@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project_app/screens/authentication/auth.dart';
 import 'package:project_app/screens/sign_in/components/form_error.dart';
 import 'package:project_app/screens/sign_in/sign_in.dart';
+import 'package:project_app/screens/sign_up/otp/otp.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../loading.dart';
 
 String name;
@@ -298,7 +298,7 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       decoration: InputDecoration(
         labelText: "Phone Number",
-        hintText: "Enter your Phone Number",
+        hintText: "For eg: +91 1234567890",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Image.asset("assets/icons/Mail.png"),
       ),
