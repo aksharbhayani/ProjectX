@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_app/constants.dart';
+import 'package:project_app/screens/home_screen/Screen%202/constants.dart';
 import 'package:tflite/tflite.dart';
 import '../../loading.dart';
 import '../Screen 2/animation.dart';
@@ -161,12 +162,17 @@ class _TensorflowState extends State<Tensorflow> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
-        elevation: 3,
-        brightness: Brightness.light,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Image Analysis",
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        backgroundColor: kPrimaryColor,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -184,50 +190,45 @@ class _TensorflowState extends State<Tensorflow> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    FadeAnimation(
-                        1,
-                        Padding(
-                          padding: const EdgeInsets.only(top: 14.0),
-                          child: Text(
-                            'Facial Analysis',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          ),
-                        )),
                     SizedBox(
                       height: 20,
                     ),
                     Container(
-                      height: 50,
+                      height: 130,
                       child: ListView(
-                        scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.vertical,
                         children: <Widget>[
-                          FloatingActionButton(
+                          SizedBox(
+                            height: 8,
+                          ),
+                          FloatingActionButton.extended(
                             heroTag: "btn1",
                             tooltip: 'Pick Image',
-                            onPressed: pickImage,
-                            child: Icon(
+                            onPressed: () {
+                              pickImage();
+                            },
+                            label: Text("Gallery"),
+                            icon: Icon(
                               Icons.add_a_photo,
                               size: 20,
                               color: Colors.black,
                             ),
-                            backgroundColor: Colors.yellow[700],
+                            backgroundColor: kPrimColor,
                           ),
                           SizedBox(
-                            width: 40,
+                            height: 20,
                           ),
-                          FloatingActionButton(
+                          FloatingActionButton.extended(
                             heroTag: "btn2",
                             tooltip: 'Open Camera',
                             onPressed: pickImageCamera,
-                            child: Icon(
+                            label: Text("Camera"),
+                            icon: Icon(
                               Icons.camera,
                               size: 20,
                               color: Colors.black,
                             ),
-                            backgroundColor: Colors.yellow[700],
+                            backgroundColor: kPrimColor,
                           ),
                         ],
                       ),

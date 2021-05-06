@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_app/screens/home_screen/home.dart';
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+import 'body.dart';
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
@@ -15,6 +18,10 @@ class _OtpFormState extends State<OtpForm> {
   FocusNode pin2FocusNode;
   FocusNode pin3FocusNode;
   FocusNode pin4FocusNode;
+  FocusNode pin5FocusNode;
+  FocusNode pin6FocusNode;
+
+  //get _verificationCode => _verificationCode;
 
   @override
   void initState() {
@@ -22,6 +29,8 @@ class _OtpFormState extends State<OtpForm> {
     pin2FocusNode = FocusNode();
     pin3FocusNode = FocusNode();
     pin4FocusNode = FocusNode();
+    pin5FocusNode = FocusNode();
+    pin6FocusNode = FocusNode();
   }
 
   @override
@@ -30,6 +39,8 @@ class _OtpFormState extends State<OtpForm> {
     pin2FocusNode.dispose();
     pin3FocusNode.dispose();
     pin4FocusNode.dispose();
+    pin5FocusNode.dispose();
+    pin6FocusNode.dispose();
   }
 
   void nextField(String value, FocusNode focusNode) {
@@ -48,7 +59,7 @@ class _OtpFormState extends State<OtpForm> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: getScreenWidth(60),
+                width: getScreenWidth(50),
                 child: TextFormField(
                   autofocus: true,
                   obscureText: true,
@@ -62,7 +73,7 @@ class _OtpFormState extends State<OtpForm> {
                 ),
               ),
               SizedBox(
-                width: getScreenWidth(60),
+                width: getScreenWidth(50),
                 child: TextFormField(
                   focusNode: pin2FocusNode,
                   obscureText: true,
@@ -74,7 +85,7 @@ class _OtpFormState extends State<OtpForm> {
                 ),
               ),
               SizedBox(
-                width: getScreenWidth(60),
+                width: getScreenWidth(50),
                 child: TextFormField(
                   focusNode: pin3FocusNode,
                   obscureText: true,
@@ -86,7 +97,7 @@ class _OtpFormState extends State<OtpForm> {
                 ),
               ),
               SizedBox(
-                width: getScreenWidth(60),
+                width: getScreenWidth(50),
                 child: TextFormField(
                   focusNode: pin4FocusNode,
                   obscureText: true,
@@ -94,10 +105,54 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) {
+                  onChanged: (value) => nextField(value, pin5FocusNode),
+                ),
+              ),
+              SizedBox(
+                width: getScreenWidth(50),
+                child: TextFormField(
+                  focusNode: pin5FocusNode,
+                  obscureText: true,
+                  style: TextStyle(fontSize: 24),
+                  keyboardType: TextInputType.number,
+                  textAlign: TextAlign.center,
+                  decoration: otpInputDecoration,
+                  onChanged: (value) => nextField(value, pin6FocusNode),
+                ),
+              ),
+              SizedBox(
+                width: getScreenWidth(50),
+                child: TextFormField(
+                  focusNode: pin6FocusNode,
+                  obscureText: true,
+                  style: TextStyle(fontSize: 24),
+                  keyboardType: TextInputType.number,
+                  textAlign: TextAlign.center,
+                  decoration: otpInputDecoration,
+                  onChanged: (value) async {
                     if (value.length == 1) {
-                      pin4FocusNode.unfocus();
+                      pin6FocusNode.unfocus();
                       // Then you need to check is the code is correct or not
+                      try {
+                        await FirebaseAuth.instance
+                            .signInWithCredential(PhoneAuthProvider.credential(
+                                verificationId: verificationCode,
+                                smsCode: value))
+                            .then((value) async {
+                          if (value.user != null) {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                                (route) => false);
+                          }
+                        });
+                      } catch (e) {
+                        FocusScope.of(context).unfocus();
+                        print('Invalid OTP');
+                        //_scaffoldkey.currentState
+                        //.showSnackBar(SnackBar(content: Text('invalid OTP')));
+                      }
                     }
                   },
                 ),
