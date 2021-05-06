@@ -1,16 +1,27 @@
-# project_app
+# Depression Detection - App -Flutter
 
-A new Flutter project.
+One of the leading causes of illness and disability among adolescents is depression. Often, a person going through mental health issues hesitate to consult a counselor. So, the purpose of our project is to create an app that will analyze a person’s facial features and also analyze their social media activities which will be used for predicting if that person is depressed or non-depressed and if depressed then what is the level of depression in that person.
 
-## Getting Started
+## Login & SignUp
+![](1.PNG)
 
-This project is a starting point for a Flutter application.
+## Home Screen (Dark + Light Mode)
+![](2.PNG)
 
-A few resources to get you started if this is your first Flutter project:
+## Face Analysis
+![](4.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Twitter Analysis
+![](5.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## PHQ-9 Questions
+![](6.png)
+
+## Thoughts & Daily Facts 
+![](7.PNG)
+
+
+## Link for the APK
+https://drive.google.com/file/d/1xVCBkhb7FEprmdePxycMR9iazBLTD91D/view?usp=drivesdk
+
+## Video Analysis will not work as the server is not running.
